@@ -1,0 +1,27 @@
+$color-white: rgba(255, 255, 255, .8);
+
+.toolbar {
+  color: $color-white;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+  padding-left: 15px;
+  padding-right: 15px;
+
+  &__logo {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+
+  &__logo a {
+    text-decoration: none;
+    color: $color-white;
+  }
+
+  &__item {
+    font-size: 16px;
+  }
+
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -1,0 +1,10 @@
+<div *ngIf="!isLoggedIn" class="home-screen-container center-vh-column">
+  <div class="home-screen">
+    <h1 class="home-screen__heading">Calorie Counter</h1>
+    <p class="home-screen__description">Track your meals</p>
+    <a routerLink="/register" class="home-screen__register" mat-raised-button color="primary">Join now</a>
+    <p class="home-screen__login">Already have an account? <a routerLink="/login" class="home-screen__login-link">Log In</a></p>
+  </div>
+</div>
+
+<app-dashboard *ngIf="isLoggedIn"></app-dashboard>
