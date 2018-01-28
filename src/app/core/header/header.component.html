@@ -1,12 +1,12 @@
 <mat-toolbar class="toolbar" color="primary"> 
-  <button *ngIf="isLoggedIn" (click)="onSidenavToggle()" mat-icon-button>
+  <button *ngIf="isLoggedIn$ | async" (click)="onSidenavToggle()" mat-icon-button>
     <mat-icon>menu</mat-icon>
   </button>
   <div class="toolbar__logo"><a routerLink="/">Calorie Counter</a></div>
 
   <span class="spacer"></span>
 
-  <button *ngIf="isLoggedIn" mat-button class="toolbar__item">Logout</button>
-  <a *ngIf="!isLoggedIn" mat-button class="toolbar__item" routerLink="/login">Login</a>
-  <a *ngIf="!isLoggedIn" mat-button class="toolbar__item" routerLink="/register">Register</a>
+  <button *ngIf="isLoggedIn$ | async" mat-button class="toolbar__item" (click)="onLogout()">Logout</button>
+  <a *ngIf="!(isLoggedIn$ | async)" mat-button class="toolbar__item" routerLink="/login">Login</a>
+  <a *ngIf="!(isLoggedIn$ | async)" mat-button class="toolbar__item" routerLink="/register">Register</a>
 </mat-toolbar>

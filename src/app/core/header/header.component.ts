@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LayoutService } from '../../shared/services/layout.service';
+import { AuthService } from '../../auth/auth.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +9,22 @@ import { LayoutService } from '../../shared/services/layout.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isLoggedIn = true;
+  isLoggedIn$: Observable<boolean>;
 
-  constructor(private layoutService: LayoutService) { }
+  constructor(
+    private layoutService: LayoutService,
+    private authService: AuthService) { }
 
   onSidenavToggle() {
     this.layoutService.toggleSidenav();
   }
 
+  onLogout() {
+    this.authService.logout();
+  }
+
   ngOnInit() {
+    this.isLoggedIn$ = this.authService.isLoggedIn;
   }
 
 }

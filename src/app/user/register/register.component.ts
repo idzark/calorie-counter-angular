@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../auth/auth.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,25 @@ export class RegisterComponent implements OnInit {
   password: string;
   passwordConfirmation: string;
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    public snackBar: MatSnackBar) { }
+
+  onRegister() {
+    const registerData = {
+      username: this.username,
+      password: this.password,
+      passwordConfirmation: this.passwordConfirmation
+    };
+    this.authService.registerUser(registerData)
+      .subscribe(
+        (res) => {
+          this.snackBar.open('Account created', 'Close', {
+            duration: 3000,
+          });
+        }
+      );
+  }
 
   ngOnInit() {
   }
