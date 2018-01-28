@@ -1,3 +1,14 @@
-<p>
-  login works!
-</p>
+<div class="login-container center-vh-column">
+  <mat-card class="login-card">
+    <form class="login-form" (ngSubmit)="onLogin()">
+      <h3 class="login-form__heading">Login</h3>
+      <mat-form-field class="login-form__field">
+        <input matInput name="username" placeholder="Username" type="text" [(ngModel)]="username">
+      </mat-form-field>
+      <mat-form-field class="login-form__field">
+        <input matInput name="password" placeholder="Password" type="password" [(ngModel)]="password">
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="login-form__button">Log In</button>
+    </form>
+  </mat-card>
+</div>

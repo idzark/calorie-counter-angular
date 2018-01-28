@@ -1,3 +1,23 @@
-<p>
-  register works!
-</p>
+<div class="register-container center-vh-column">
+  <mat-card class="register-card">
+    <form class="register-form" (ngSubmit)="onRegister()">
+      <h3 class="register-form__heading">Register</h3>
+      <mat-form-field class="register-form__field">
+        <input matInput name="username" placeholder="Username" type="text" [(ngModel)]="username">
+        <mat-hint align="start">
+          <strong>3-16 characters</strong>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field class="register-form__field">
+        <input matInput name="password" placeholder="Password" type="password" [(ngModel)]="password">
+        <mat-hint align="start">
+          <strong>Min. 5 characters</strong>
+        </mat-hint>
+      </mat-form-field>
+      <mat-form-field class="register-form__field">
+        <input matInput name="passwordConfirmation" placeholder="Confirm password" type="password" [(ngModel)]="passwordConfirmation">
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="register-form__button">Register</button>
+    </form>
+  </mat-card>
+</div>
