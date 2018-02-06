@@ -1,5 +1,6 @@
 <div class="register-container center-vh-column">
   <mat-card class="register-card">
+    <app-error-list *ngIf="validationErrors" [errors]="errorsList"></app-error-list>
     <form class="register-form" (ngSubmit)="onRegister()">
       <h3 class="register-form__heading">Register</h3>
       <mat-form-field class="register-form__field">

@@ -12,6 +12,9 @@ export class RegisterComponent implements OnInit {
   password: string;
   passwordConfirmation: string;
 
+  errorsList = [];
+  validationErrors: boolean;
+
   constructor(
     private authService: AuthService,
     public snackBar: MatSnackBar) { }
@@ -28,6 +31,10 @@ export class RegisterComponent implements OnInit {
           this.snackBar.open('Account created', 'Close', {
             duration: 3000,
           });
+        },
+        (error) => {
+          this.errorsList = error.error.errors;
+          this.validationErrors = true;
         }
       );
   }

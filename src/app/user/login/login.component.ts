@@ -11,6 +11,9 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
+  errorsList = [];
+  validationErrors: boolean;
+
   constructor(
     private authService: AuthService,
     public snackBar: MatSnackBar) { }
@@ -23,6 +26,10 @@ export class LoginComponent implements OnInit {
           this.snackBar.open('Logged in', 'Close', {
             duration: 3000,
           });
+        },
+        (error) => {
+          this.errorsList = error.error.errors;
+          this.validationErrors = true;
         }
       );
   }

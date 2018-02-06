@@ -1,5 +1,6 @@
 <div class="login-container center-vh-column">
   <mat-card class="login-card">
+    <app-error-list *ngIf="validationErrors" [errors]="errorsList"></app-error-list>
     <form class="login-form" (ngSubmit)="onLogin()">
       <h3 class="login-form__heading">Login</h3>
       <mat-form-field class="login-form__field">
