@@ -1,4 +1,4 @@
-<div *ngIf="!isLoggedIn" class="home-screen-container center-vh-column">
+<div *ngIf="!(isLoggedIn$ | async)" class="home-screen-container center-vh-column">
   <div class="home-screen">
     <h1 class="home-screen__heading">Calorie Counter</h1>
     <p class="home-screen__description">Track your meals</p>
@@ -7,4 +7,4 @@
   </div>
 </div>
 
-<app-dashboard *ngIf="isLoggedIn"></app-dashboard>
+<app-dashboard *ngIf="isLoggedIn$ | async"></app-dashboard>

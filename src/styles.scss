@@ -1,13 +1,25 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
 html, body {
-  box-sizing: border-box;
   height: 100%;
   margin: 0;
 }
 
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
 }
 
 .center-vh-column {
