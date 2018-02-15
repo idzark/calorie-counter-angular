@@ -11,6 +11,8 @@ import { MatSnackBar } from '@angular/material';
 export class ProductsComponent implements OnInit, OnChanges {
   products: Product[];
   product: Product;
+  errorsList = [];
+  validationErrors: boolean;
 
   constructor(
     private productsSerivce: ProductsService,
@@ -25,6 +27,11 @@ export class ProductsComponent implements OnInit, OnChanges {
           duration: 3000,
         });
         this.products = [...this.products, this.product];
+        this.validationErrors = false;
+      },
+      (error) => {
+        this.errorsList = error.error;
+        this.validationErrors = true;
       }
       );
   }

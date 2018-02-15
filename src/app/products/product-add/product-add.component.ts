@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, OnChanges, EventEmitter, Output, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Product } from '../../shared/models/product.model';
 import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -9,6 +9,8 @@ import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
   styleUrls: ['./product-add.component.scss']
 })
 export class ProductAddComponent implements OnInit, OnChanges {
+  @Input() errorsList;
+  @Input() validationErrors: boolean;
   @Output() addProduct = new EventEmitter<Product>();
   product: Product = <Product>{};
 
@@ -17,8 +19,10 @@ export class ProductAddComponent implements OnInit, OnChanges {
 
   onAddProduct(form: NgForm) {
     const newProduct = form.value;
-    this.addProduct.emit(newProduct);
-    form.resetForm();
+    if (form.valid) {
+      this.addProduct.emit(newProduct);
+      form.resetForm();
+    }
   }
 
   ngOnInit() {

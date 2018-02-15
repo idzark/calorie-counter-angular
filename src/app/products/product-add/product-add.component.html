@@ -1,6 +1,7 @@
 <div class="product-add">
   <mat-card class="product-add__card">
     <form #form="ngForm" (ngSubmit)="onAddProduct(form)" class="product-add__form">
+      <app-error-list *ngIf="validationErrors" [errors]="errorsList"></app-error-list>
       <h3 class="product-add__heading">Add product</h3>
       <div class="product-add__inputs">
       <mat-form-field class="product-add__field">
