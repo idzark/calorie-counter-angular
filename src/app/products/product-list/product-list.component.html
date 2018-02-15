@@ -1,0 +1,38 @@
+<div class="table-container mat-elevation-z8">
+  <div class="table-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="protein">
+      <mat-header-cell *matHeaderCellDef>Protein / 100g</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.protein }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="carbs">
+      <mat-header-cell *matHeaderCellDef>Carbs / 100g</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.carbs }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fats">
+      <mat-header-cell *matHeaderCellDef>Fats / 100g</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.fats }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="calories">
+      <mat-header-cell *matHeaderCellDef>Calories / 100g</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.calories }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

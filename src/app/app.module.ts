@@ -14,6 +14,9 @@ import { UserModule } from './user/user.module';
 import { LayoutService } from './shared/services/layout.service';
 import { AuthService } from './auth/auth.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { ProductsModule } from './products/products.module';
+import { ProductsService } from './shared/services/products.service';
+
 
 
 
@@ -29,16 +32,18 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     SharedModule,
     CoreModule,
     UserModule,
+    ProductsModule,
     AppRoutingModule
   ],
   providers: [
     LayoutService,
     AuthService,
     AuthInterceptorService,
+    ProductsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      multi: true
+      multi: true,
     }],
   bootstrap: [AppComponent]
 })

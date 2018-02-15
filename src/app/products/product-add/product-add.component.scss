@@ -1,0 +1,25 @@
+.product-add {
+  min-width: 200px;
+  font-size: 1.6rem;
+  
+  &__card {
+
+  }
+
+  &__inputs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__heading {
+    margin-bottom: 20px;
+  }
+
+  &__field {
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+}
