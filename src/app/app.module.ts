@@ -16,7 +16,8 @@ import { AuthService } from './auth/auth.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { ProductsModule } from './products/products.module';
 import { ProductsService } from './shared/services/products.service';
-
+import { MealsModule } from './meals/meals.module';
+import { MealsService } from './shared/services/meals.service';
 
 
 
@@ -33,13 +34,15 @@ import { ProductsService } from './shared/services/products.service';
     CoreModule,
     UserModule,
     ProductsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MealsModule
   ],
   providers: [
     LayoutService,
     AuthService,
     AuthInterceptorService,
     ProductsService,
+    MealsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

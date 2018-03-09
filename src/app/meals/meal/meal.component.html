@@ -1,0 +1,44 @@
+<mat-card class="meal">
+  <div class="meal__header">
+    <div class="meal__image-container">
+      <img [src]="meal.imageUrl" class="meal__image">
+    </div>
+    <div class="meal__image-overlay"></div>
+    <h3 class="meal__name">{{ meal.name }}</h3>
+  </div>
+  <div class="meal__content">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="meal__content-title">
+          Ingredients
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table class="ingredients">
+        <tr class="ingredients__row">
+          <th>Name</th>
+          <th>Amount</th>
+          <th>Protein</th>
+          <th>Carbs</th>
+          <th>Fats</th>
+          <th>Calories</th>
+        </tr>
+        <tr class="ingredients__row" *ngFor="let ingredient of meal.ingredients">
+          <td>{{ ingredient.name }}</td>
+          <td>{{ ingredient.weight }}</td>
+          <td>{{ ingredient.protein }}</td>
+          <td>{{ ingredient.carbs }}</td>
+          <td>{{ ingredient.fats }}</td>
+          <td>{{ ingredient.calories }}</td>
+        </tr>
+        <tr class="ingredients__row">
+          <th>Total</th>
+          <th>{{ meal.weightTotal }}</th>
+          <th>{{ meal.proteinTotal }}</th>
+          <th>{{ meal.carbsTotal }}</th>
+          <th>{{ meal.fatsTotal }}</th>
+          <th>{{ meal.caloriesTotal }}</th>
+        </tr>
+      </table>
+    </mat-expansion-panel>
+  </div>
+</mat-card>
