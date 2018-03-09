@@ -4,4 +4,5 @@ export class Product {
   carbs: number;
   fats: number;
   calories: number;
+  weight: number;
 }

@@ -1,0 +1,16 @@
+.meal-add {
+
+  &__title {
+    font-size: 2rem;
+  }
+
+}
+
+.ingredients {
+  width: 50%;
+
+  & th, td {
+    padding: .6rem;
+    text-align: left;
+  }
+}

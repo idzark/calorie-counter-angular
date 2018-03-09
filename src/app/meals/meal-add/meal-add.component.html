@@ -1,0 +1,57 @@
+<mat-dialog-content>
+  <form (ngSubmit)="onAddMeal()">
+    <h3 class="meal-add__field-title">Name</h3>
+    <mat-form-field class="product-add__field">
+      <input matInput name="name" placeholder="Name" type="text" [(ngModel)]="meal.name">
+    </mat-form-field>
+    <h3 class="meal-add__field-title">Meal image</h3>
+    <mat-form-field class="product-add__field">
+      <input matInput name="imageUrl" placeholder="Image URL" type="text" [(ngModel)]="meal.imageUrl">
+    </mat-form-field>
+    <h3>Category</h3>
+    <mat-form-field>
+      <mat-select [(value)]="selectedCategory" placeholder="Category">
+        <mat-option [value]="category" *ngFor="let category of categories">{{ category }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <h3 class="meal-add__field-title">Ingredients</h3>
+    <table class="ingredients">
+      <tr *ngIf="ingredients.length > 0" class="ingredients__row">
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Protein</th>
+        <th>Carbs</th>
+        <th>Fats</th>
+        <th>Calories</th>
+      </tr>
+      <tr class="ingredient__row" *ngFor="let ingredient of ingredients">
+        <td>{{ ingredient.name }}</td>
+        <td>{{ ingredient.weight }}</td>
+        <td>{{ ingredient.protein }}</td>
+        <td>{{ ingredient.carbs }}</td>
+        <td>{{ ingredient.fats }}</td>
+        <td>{{ ingredient.calories }}</td>
+      </tr>
+      <tr *ngIf="ingredients.length > 0" class="ingredients__row">
+        <th>Total</th>
+        <th>{{ weightTotal }}</th>
+        <th>{{ proteinTotal }}</th>
+        <th>{{ carbsTotal }}</th>
+        <th>{{ fatsTotal }}</th>
+        <th>{{ caloriesTotal }}</th>
+      </tr>
+    </table>
+    <div>
+      <mat-form-field>
+        <mat-select [(value)]="selectedIngredient" placeholder="Ingredient">
+        <mat-option [value]="product" *ngFor="let product of products">{{ product.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="amount" placeholder="Amount" type="number" [(ngModel)]="ingredientAmount">
+      </mat-form-field>
+      <button type="button" mat-button color="primary" (click)="onAddIngredient()" [disabled]="(ingredientAmount <= 0 || !ingredientAmount) || !selectedIngredient">Add ingredient</button>
+    </div>
+    <button mat-raised-button type="submit" color="primary">Add new meal</button>
+  </form>
+</mat-dialog-content>

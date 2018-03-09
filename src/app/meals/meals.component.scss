@@ -1,0 +1,38 @@
+.meals {
+  list-style: none;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  &__item {
+    width: 90%;
+    margin-bottom: 4rem;
+
+    @media screen and (min-width: 768px) {
+      width: 47%;
+    }
+  }
+}
+
+.meal-add-container {
+  margin-bottom: 30px;
+}
+
+.new-meal-btn {
+  margin-bottom: 2rem;
+}
+
+.meal-search {
+  width: 100%;
+
+  &__form-field {
+    width: 100%;
+  }
+}
+

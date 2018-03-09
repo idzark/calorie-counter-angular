@@ -1,0 +1,15 @@
+<button mat-raised-button (click)="openDialog()" color="primary" class="new-meal-btn">Add new meal</button>
+<!-- <div class="meal-add-container">
+  <app-meal-add [products]="products" (addMeal)="addNewMeal($event)"></app-meal-add>
+</div> -->
+<div class="meal-search">
+  <mat-form-field class="meal-search__form-field">
+    <input matInput [(ngModel)]="searchText" placeholder="Find your meal">
+  </mat-form-field>
+</div>
+
+<ul class="meals">
+  <li *ngFor="let meal of meals | filter : searchText" class="meals__item">
+    <app-meal [meal]="meal"></app-meal>
+  </li>
+</ul>
