@@ -59,11 +59,11 @@ export class MealAddComponent implements OnInit {
 
   onAddMeal() {
     this.meal.ingredients = this.ingredients;
-    this.meal.weightTotal = this.weightTotal;
-    this.meal.proteinTotal = this.proteinTotal;
-    this.meal.carbsTotal = this.carbsTotal;
-    this.meal.fatsTotal = this.fatsTotal;
-    this.meal.caloriesTotal = this.caloriesTotal;
+    this.meal.weight = this.weightTotal;
+    this.meal.protein = this.proteinTotal;
+    this.meal.carbs = this.carbsTotal;
+    this.meal.fats = this.fatsTotal;
+    this.meal.calories = this.caloriesTotal;
     this.addMeal.emit(this.meal);
   }
 

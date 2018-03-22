@@ -1,0 +1,19 @@
+.date {
+  font-size: 2.8rem;
+  color: #3C4858;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  &__display {
+    margin-left: 6rem;
+    margin-right: 6rem;
+  }
+
+}
+
+.mat-icon {
+  font-size: 3.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+}

@@ -18,12 +18,15 @@ import { ProductsModule } from './products/products.module';
 import { ProductsService } from './shared/services/products.service';
 import { MealsModule } from './meals/meals.module';
 import { MealsService } from './shared/services/meals.service';
+import { FoodModule } from './food/food.module';
+import { FoodLogService } from './shared/services/food-log.service';
+
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { MealsService } from './shared/services/meals.service';
     UserModule,
     ProductsModule,
     AppRoutingModule,
-    MealsModule
+    MealsModule,
+    FoodModule
   ],
   providers: [
     LayoutService,
@@ -43,6 +47,7 @@ import { MealsService } from './shared/services/meals.service';
     AuthInterceptorService,
     ProductsService,
     MealsService,
+    FoodLogService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

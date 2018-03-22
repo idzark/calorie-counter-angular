@@ -14,8 +14,8 @@ export class MealsService {
     return this.http.post(this.path + '/meal', mealData, { headers: this.headers });
   }
 
-  getMeals() {
-    return this.http.get<Meal[]>(this.path + '/meals');
+  getMeals(): Observable<Meal[]> {
+    return this.http.get<Meal[]>(this.path + '/meals', { headers: this.headers });
   }
 
 }

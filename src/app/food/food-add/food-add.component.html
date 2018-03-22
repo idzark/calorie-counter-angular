@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>{{ foodCategory }}</h2>
+<mat-dialog-content>
+  <mat-form-field *ngIf="foodType === 'Product'">
+    <mat-select [(value)]="selectedProduct" placeholder="Product">
+      <mat-option [value]="product" *ngFor="let product of products">{{ product.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field *ngIf="foodType === 'Meal'">
+    <mat-select [(value)]="selectedMeal" placeholder="Meal">
+      <mat-option [value]="meal" *ngFor="let meal of meals">{{ meal.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="amount" placeholder="Amount" type="number" [(ngModel)]="selectedWeight">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Close</button>
+  <button
+    *ngIf="foodType === 'Product'" 
+    mat-raised-button 
+    color="primary" 
+    [disabled]="(!selectedProduct && !selectedMeal) || (selectedWeight < 1 || !selectedWeight)"
+    (click)="addFood()">Add Product</button>
+    <button 
+      *ngIf="foodType === 'Meal'" 
+      mat-raised-button color="primary" 
+      [disabled]="(!selectedProduct && !selectedMeal) || (selectedWeight < 1 || !selectedWeight)"
+      (click)="addFood()">Add Meal</button>
+</mat-dialog-actions>

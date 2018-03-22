@@ -1,0 +1,13 @@
+<div class="date-display-container">
+  <app-date-display [date]="date" (dateChange)="onDateChange($event)"></app-date-display>
+</div>
+
+<div class="food-log-container">
+  <app-food-log 
+    [products]="products$ | async" 
+    [meals]="meals$ | async" 
+    [foodLog]="foodLog"
+    [total]="total"
+    (add)="updateFoodLog($event)"></app-food-log>
+</div>
+
