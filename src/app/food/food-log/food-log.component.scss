@@ -1,0 +1,30 @@
+.food-log {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  &__header {
+    background-color: #673AB7;
+  }
+  &__heading-primary,
+  &__heading,
+  &__data {
+    padding: 10px;
+  }
+  &__heading-primary,
+  &__heading {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+  }
+  &__heading-primary {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  &__heading {
+    color: #3C4858;
+    font-weight: 600;
+    background-color: #EDE7F6;
+  }
+  &__data {
+    color: #3C4858;
+  }
+}

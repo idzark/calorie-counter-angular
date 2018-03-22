@@ -14,8 +14,8 @@ export class ProductsService {
     return this.http.post(this.path + '/product', productData, { headers: this.headers });
   }
 
-  getProducts() {
-    return this.http.get<Product[]>(this.path + '/products');
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.path + '/products', { headers: this.headers });
   }
 
 }
