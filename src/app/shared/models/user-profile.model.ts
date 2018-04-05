@@ -3,7 +3,7 @@ export class UserProfile {
   height: number;
   weight: number;
   calories: number;
-  protein: number;
-  carbs: number;
-  fats: number;
+  proteinPercentage: number;
+  carbsPercentage: number;
+  fatsPercentage: number;
 }

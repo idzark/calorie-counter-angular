@@ -11,11 +11,11 @@ export class UserService {
   constructor(private  http: HttpClient) { }
 
   getUserProfile(): Observable<UserProfile> {
-    return this.http.get<UserProfile>(this.path + '/user/profile', { headers: this.headers });
+    return this.http.get<UserProfile>(this.path + '/user', { headers: this.headers });
   }
 
-  updateUserProfile(profileData: UserProfile) {
-    this.http.put(this.path + '/user/update', { headers: this.headers });
+  updateUserProfile(profileData: UserProfile): Observable<UserProfile> {
+    return this.http.put<UserProfile>(this.path + '/user', profileData, { headers: this.headers });
   }
 
 }

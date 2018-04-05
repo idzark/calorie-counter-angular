@@ -6,12 +6,14 @@ import { RegisterComponent } from './user/register/register.component';
 import { ProductsComponent } from './products/products.component';
 import { MealsComponent } from './meals/meals.component';
 import { FoodComponent } from './food/food.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
+      { path: 'profile', component: ProfileComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'meals', component: MealsComponent },
       { path: 'food-log', component: FoodComponent }

@@ -1,0 +1,34 @@
+@mixin breakpoint($point) {
+  @if $point==mobile {
+    @media (min-width: 20em) {
+      @content;
+    }
+  }
+  @else if $point==mobile-horizontal {
+    @media (min-width: 30em) {
+      @content;
+    }
+  }
+  @else if $point==tablet {
+    @media (min-width: 48em) {
+      @content;
+    }
+  }
+  @else if $point==tablet-horizontal {
+    @media (min-width: 64em) {
+      @content;
+    }
+  }
+  @else if $point==desktop {
+    @media (min-width: 80em) {
+      @content;
+    }
+  }
+  @else if $point==desktop-wide {
+    @media (min-width: 90em) {
+      @content;
+    }
+  }
+}
+
+$test: red;
