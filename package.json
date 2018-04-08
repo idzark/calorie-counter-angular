@@ -31,6 +31,10 @@
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
+  "browserslist": [
+    "> 1%",
+    "last 10 versions"
+  ],
   "devDependencies": {
     "@angular/cli": "1.6.0",
     "@angular/compiler-cli": "^5.0.0",

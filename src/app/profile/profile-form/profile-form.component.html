@@ -1,0 +1,88 @@
+<mat-card class="profile" *ngIf="userProfile">
+  <form class="profile__form">
+    <app-error-list *ngIf="validationErrors" [errors]="errorsList"></app-error-list>
+    <h3 class="profile__title">{{ userProfile.username }}'s profile</h3>
+    <div class="profile__category">
+      <h3 class="profile__category-title">Basic information</h3>
+      <p class="profile__info">Username: {{ userProfile.username }}</p>
+      <mat-form-field class="profile__input-field">
+        <input matInput
+        name="height"
+        placeholder="Height (cm)"
+        type="number"
+        [(ngModel)]="userProfile.height">
+      </mat-form-field>
+      <mat-form-field class="profile__input-field">
+        <input matInput
+        name="weight"
+        placeholder="Weight (kg)"
+        type="number"
+        [(ngModel)]="userProfile.weight">
+      </mat-form-field>
+    </div>
+    <div class="profile__category">
+      <h3 class="profile__category-title">Goals</h3>
+      <mat-form-field class="profile__input-field">
+          <input matInput 
+          name="calories" 
+          placeholder="Calories" 
+          type="number" 
+          [ngModel]="userProfile.calories"
+          (ngModelChange)="userProfile.calories=$event">
+        </mat-form-field> 
+      <div class="profile__macronutrients">
+        <div class="profile__macronutrients-values">
+          <p class="profile__macronutrient-value">Protein: {{ (userProfile.proteinPercentage / 100 * userProfile.calories) / 4 | number : '1.0-1' }}</p>
+          <p class="profile__macronutrient-value">Carbs: {{ (userProfile.carbsPercentage / 100 * userProfile.calories) / 4 | number : '1.0-1' }}</p>
+          <p class="profile__macronutrient-value">Fats: {{ (userProfile.fatsPercentage / 100 * userProfile.calories) / 9 | number : '1.0-1' }}</p>
+        </div>
+        <div class="profile__macronutrients-values">
+          <div class="profile__macronutrient-percentage">
+          <mat-form-field class="profile__input-field profile__input-field--short">
+            <input matInput 
+            name="proteinPercentage" 
+            type="number" 
+            min="0"
+            max="{{ 100 - userProfile.carbsPercentage - userProfile.fatsPercentage }}"
+            [ngModel]="userProfile.proteinPercentage | number: '1.0-0'"
+            (ngModelChange)="userProfile.proteinPercentage=$event">
+          </mat-form-field>
+          <span>%</span>
+          </div>
+          <div class="profile__macronutrient-percentage">
+          <mat-form-field class="profile__input-field profile__input-field--short">
+            <input matInput 
+            name="carbsPercentage" 
+            type="number" 
+            min="0"
+            max="{{ 100 - userProfile.proteinPercentage - userProfile.fatsPercentage }}"
+            [ngModel]="userProfile.carbsPercentage | number: '1.0-0'"
+            (ngModelChange)="userProfile.carbsPercentage=$event">
+          </mat-form-field>
+          <span>%</span>
+          </div>
+          <div class="profile__macronutrient-percentage">
+          <mat-form-field class="profile__input-field profile__input-field--short">
+            <input matInput 
+            name="fatsPercentage" 
+            type="number" 
+            min="0"
+            max="{{ 100 - userProfile.proteinPercentage - userProfile.carbsPercentage }}"
+            [ngModel]="userProfile.fatsPercentage | number: '1.0-0'"
+            (ngModelChange)="userProfile.fatsPercentage=$event">
+          </mat-form-field>
+          <span>%</span>
+          </div>
+        </div>
+      </div>
+      <p #percentageTotal 
+      class="profile__macronutrient-total" 
+      [ngClass]="{'profile__macronutrient-total--invalid': userProfile.proteinPercentage + userProfile.carbsPercentage + userProfile.fatsPercentage < 100 }">
+        Total: {{ userProfile.proteinPercentage + userProfile.carbsPercentage + userProfile.fatsPercentage }} %
+      </p>
+    </div>
+    <div class="profile__submit">
+    <button mat-raised-button color="primary" class="profile__update-btn" (click)="onProfileUpdate()">Update profile</button>
+    </div>  
+  </form>
+</mat-card>

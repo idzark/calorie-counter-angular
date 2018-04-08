@@ -20,13 +20,19 @@ import { MealsModule } from './meals/meals.module';
 import { MealsService } from './shared/services/meals.service';
 import { FoodModule } from './food/food.module';
 import { FoodLogService } from './shared/services/food-log.service';
+import { UserService } from './shared/services/user.service';
+import { ProfileModule } from './profile/profile/profile.module';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileFormComponent } from './profile/profile-form/profile-form.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProfileComponent,
+    ProfileFormComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,8 @@ import { FoodLogService } from './shared/services/food-log.service';
     ProductsModule,
     AppRoutingModule,
     MealsModule,
-    FoodModule
+    FoodModule,
+    ProfileModule
   ],
   providers: [
     LayoutService,
@@ -48,6 +55,7 @@ import { FoodLogService } from './shared/services/food-log.service';
     ProductsService,
     MealsService,
     FoodLogService,
+    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

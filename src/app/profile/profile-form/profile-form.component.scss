@@ -1,0 +1,89 @@
+@import '~sass/mixins';
+
+.profile {
+
+  &__form {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  &__category-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+
+  &__category {
+    margin-top: 1.5rem;
+  }
+
+  &__info {
+    margin-bottom: 2rem;
+  }
+
+  &__macronutrients {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__macronutrients-values {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: 50%;
+    justify-content: space-around;
+  }
+
+  &__macronutrient-value {
+    
+  }
+
+  &__macronutrient-percentage {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+  }
+
+  &__macronutrient-total {
+    font-size: 2rem;
+    color: green;
+
+    &--invalid {
+      color: red;
+    }
+  }
+
+  &__input-fields {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input-field {
+    width: 30%;
+    margin-right: 4rem;
+
+    &--short {
+      min-width: 50px;
+      width: 4%;
+      margin-right: .5rem;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__submit {
+    margin-top: 2rem;
+  }
+
+  &__update-btn {
+    font-size: 1.6rem;
+    width: 160px;
+    height: 50px;
+  }
+
+}
