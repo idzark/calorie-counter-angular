@@ -1,5 +1,6 @@
 <mat-card class="profile" *ngIf="userProfile">
   <form class="profile__form">
+    <app-error-list *ngIf="validationErrors" [errors]="errorsList"></app-error-list>
     <h3 class="profile__title">{{ userProfile.username }}'s profile</h3>
     <div class="profile__category">
       <h3 class="profile__category-title">Basic information</h3>

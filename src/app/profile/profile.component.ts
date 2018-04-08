@@ -11,6 +11,8 @@ import { MatSnackBar } from '@angular/material';
 })
 export class ProfileComponent implements OnInit {
   userProfile: UserProfile;
+  errorsList = [];
+  validationErrors: boolean;
 
   constructor(
     private userService: UserService,
@@ -24,6 +26,11 @@ export class ProfileComponent implements OnInit {
           this.snackBar.open('Profile updated', 'Close', {
             duration: 2000,
           });
+          this.validationErrors = false;
+        },
+        (err) => {
+          this.validationErrors = true;
+          this.errorsList = err.error;
         }
       );
   }

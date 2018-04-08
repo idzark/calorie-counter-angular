@@ -8,6 +8,8 @@ import { UserProfile } from '../../shared/models/user-profile.model';
 })
 export class ProfileFormComponent implements OnInit {
   @Input() userProfile: UserProfile;
+  @Input() errorsList;
+  @Input() validationErrors: boolean;
   @Output() update = new EventEmitter<UserProfile>();
 
   constructor() { }
