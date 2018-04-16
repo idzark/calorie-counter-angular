@@ -1,16 +1,41 @@
+@import "~sass/mixins";
+
 .meal-add {
 
   &__title {
     font-size: 2rem;
   }
 
+  &__field {
+    width: 100%;
+
+    @include breakpoint(tablet) {
+      width: 70%;
+    }
+  }
+
+  &__field--medium {
+
+    @include breakpoint(tablet) {
+      width: 35%;
+    }
+  }
+
 }
 
 .ingredients {
-  width: 50%;
+  width: 100%;
+
+  & th:first-child td:first-child {
+    width: 10%;
+  }
+
+  &__add-fields {
+    margin-top: 1rem;
+  }
 
   & th, td {
-    padding: .6rem;
+    padding: .2rem;
     text-align: left;
   }
 }

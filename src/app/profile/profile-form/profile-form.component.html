@@ -22,7 +22,7 @@
     </div>
     <div class="profile__category">
       <h3 class="profile__category-title">Goals</h3>
-      <mat-form-field class="profile__input-field">
+      <mat-form-field class="profile__input-field profile__input-field--long">
           <input matInput 
           name="calories" 
           placeholder="Calories" 
@@ -32,9 +32,9 @@
         </mat-form-field> 
       <div class="profile__macronutrients">
         <div class="profile__macronutrients-values">
-          <p class="profile__macronutrient-value">Protein: {{ (userProfile.proteinPercentage / 100 * userProfile.calories) / 4 | number : '1.0-1' }}</p>
-          <p class="profile__macronutrient-value">Carbs: {{ (userProfile.carbsPercentage / 100 * userProfile.calories) / 4 | number : '1.0-1' }}</p>
-          <p class="profile__macronutrient-value">Fats: {{ (userProfile.fatsPercentage / 100 * userProfile.calories) / 9 | number : '1.0-1' }}</p>
+          <p class="profile__macronutrient-value">Protein: {{ (userProfile.proteinPercentage / 100 * userProfile.calories) / 4 | number : '1.0-1' }} g </p>
+          <p class="profile__macronutrient-value">Carbs: {{ (userProfile.carbsPercentage / 100 * userProfile.calories) / 4 | number : '1.0-1' }} g</p>
+          <p class="profile__macronutrient-value">Fats: {{ (userProfile.fatsPercentage / 100 * userProfile.calories) / 9 | number : '1.0-1' }} g</p>
         </div>
         <div class="profile__macronutrients-values">
           <div class="profile__macronutrient-percentage">

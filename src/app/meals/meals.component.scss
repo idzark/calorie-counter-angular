@@ -1,3 +1,5 @@
+@import "~sass/mixins";
+
 .meals {
   list-style: none;
   margin-bottom: 3rem;
@@ -6,15 +8,15 @@
   flex-wrap: wrap;
   justify-content: space-between;
 
-  @media screen and (min-width: 768px) {
+  @include breakpoint(tablet) {
     flex-direction: row;
   }
 
   &__item {
-    width: 90%;
+    width: 100%;
     margin-bottom: 4rem;
 
-    @media screen and (min-width: 768px) {
+    @include breakpoint(tablet) {
       width: 47%;
     }
   }

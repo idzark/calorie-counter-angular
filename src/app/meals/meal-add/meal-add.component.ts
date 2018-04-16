@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../shared/models/product.model';
 import { Meal } from '../../shared/models/meal.model';
+import { MatDialogRef } from '@angular/material';
 
 
 @Component({
@@ -24,7 +25,9 @@ export class MealAddComponent implements OnInit {
   imageUrl: string;
   selectedCategory: string;
 
-  constructor() { }
+  constructor(
+    private dialogRef: MatDialogRef<MealAddComponent>
+  ) { }
 
   getTotal(value) {
     let total = 0;
@@ -65,6 +68,7 @@ export class MealAddComponent implements OnInit {
     this.meal.fats = this.fatsTotal;
     this.meal.calories = this.caloriesTotal;
     this.addMeal.emit(this.meal);
+    this.dialogRef.close();
   }
 
   ngOnInit() {

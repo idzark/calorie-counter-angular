@@ -21,7 +21,7 @@ import { MealsService } from './shared/services/meals.service';
 import { FoodModule } from './food/food.module';
 import { FoodLogService } from './shared/services/food-log.service';
 import { UserService } from './shared/services/user.service';
-import { ProfileModule } from './profile/profile/profile.module';
+import { ProfileModule } from './profile/profile.module';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileFormComponent } from './profile/profile-form/profile-form.component';
 

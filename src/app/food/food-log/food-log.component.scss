@@ -1,7 +1,13 @@
-.food-log {
-  width: 100%;
-  background-color: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+@import "~sass/mixins";
+
+/* .food-log {
+  max-width: 300px;
+
+  &__table {
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+
   &__header {
     background-color: #673AB7;
   }
@@ -27,4 +33,195 @@
   &__data {
     color: #3C4858;
   }
+} */
+
+/* .food-wrapper {
+  width: 100%;
+  margin: 0 auto;
 }
+
+.food-table {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 48px;
+    padding: 0 24px;
+    align-items: center;
+
+    &--head {
+      background-color: #673AB7;
+    }
+
+    &--category-head {
+      background-color: #EDE7F6;
+    }
+  }
+} */
+
+
+.table-container {
+  width: 100%;
+}
+
+.table {
+  background-color: #fff;
+  width: 100%;
+  max-width: 320px; 
+  margin: 0 auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border: 0;
+  border-collapse: separate;
+  transition: 0.5s;
+
+  @include breakpoint(tablet) {
+    max-width: 1000px;
+  }
+
+  &__head {
+    display: none;
+
+    @include breakpoint(tablet) {
+      display: table-header-group;
+    }
+  }
+
+  &__body,
+  &__row,
+  &__cell {
+    display: block;
+  }
+
+  &__body {
+
+    @include breakpoint(tablet) {
+      display: table-row-group;
+    }
+  }
+
+  &__row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    
+    @include breakpoint(tablet) {
+      display: table-row;
+      text-align: left;
+    }
+  }
+
+  &__row--category {
+    background-color: #EDE7F6;
+
+  }
+
+  &__cell {
+    padding: 0 12px 10px 12px;
+    
+    @include breakpoint(tablet) {
+      display: table-cell;
+      width: 15%;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.87);
+      padding: 15px 0;
+    }
+  }
+
+  &__cell--head {
+
+    @include breakpoint(tablet) {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.54);
+    }
+  }
+
+  &__cell--category-head {
+    padding: 20px 15px;
+
+    @include breakpoint(tablet) {
+      padding: 12px 0;
+    }
+  }
+
+  &__cell--total {
+    font-weight: 500;
+  }
+
+  &__cell--total-sum {
+    font-weight: 500;
+
+    @include breakpoint(tablet) {
+      font-size: 1.6rem;
+    }
+
+  }
+
+  &__cell[data-title]:before {
+    display: inline-block;
+    content: attr(data-title) ":";
+    min-width: 120px;
+
+    @include breakpoint(tablet) {
+      display: none;
+      content: "";
+    }
+  }
+
+  &__category-name {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+
+    @include breakpoint(tablet) {
+      font-size: 1.6rem;
+      margin-bottom: 0;
+    }
+  }
+
+  &__category-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    @include breakpoint(tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+  }
+
+  &__category-buttons button {
+    font-size: 1.6rem;
+    width: 120px;
+
+    @include breakpoint(tablet) {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__row &__cell:first-child {
+    padding-top: 10px;
+
+    @include breakpoint(tablet) {
+      padding-left: 24px;
+      width: 30%;
+    }
+  }
+
+  &__row &__cell:last-child {
+    
+    @include breakpoint(tablet) {
+      padding-right: 24px;
+      width: 10%;
+    }
+
+  }
+
+}
+
+

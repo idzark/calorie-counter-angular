@@ -1,3 +1,5 @@
+@import "~sass/mixins";
+
 .date {
   font-size: 2.8rem;
   color: #3C4858;
@@ -6,8 +8,13 @@
   justify-content: center;
 
   &__display {
-    margin-left: 6rem;
-    margin-right: 6rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  @include breakpoint(tablet) {
+    margin-left: 4rem;
+    margin-right: 4rem;
   }
 
 }

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ProductsService } from '../shared/services/products.service';
 import { Product } from '../shared/models/product.model';
 import { Meal } from '../shared/models/meal.model';
 import { MealsService } from '../shared/services/meals.service';
 import { MatSnackBar } from '@angular/material';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { MealAddComponent } from './meal-add/meal-add.component';
 
 @Component({

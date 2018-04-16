@@ -1,92 +1,244 @@
-<table class="food-log" *ngIf="foodLog">
-  <thead class="food-log__header">
-    <tr class="food-log__row">
-      <th class="food-log__heading-primary">Name</th>
-      <th class="food-log__heading-primary">Protein</th>
-      <th class="food-log__heading-primary">Carbs</th>
-      <th class="food-log__heading-primary">Fats</th>
-      <th class="food-log__heading-primary">Calories</th>
-    </tr>
-  </thead>
-  <tbody class="food-log__body">
-    <tr #breakfast class="food-log__row" *ngIf="total.breakfast">
-      <th class="food-log__heading">Breakfast</th>
-      <th class="food-log__heading">{{ total.breakfast.protein }}</th>
-      <th class="food-log__heading">{{ total.breakfast.carbs }}</th>
-      <th class="food-log__heading">{{ total.breakfast.fats }}</th>
-      <th class="food-log__heading">{{ total.breakfast.calories }}</th>
-    </tr>
-    <tr class="food-log__row" *ngFor="let food of foodLog.breakfast">
-      <td class="food-log__data">{{ food.name }}</td>
-      <td class="food-log__data">{{ food.protein }}</td>
-      <td class="food-log__data">{{ food.carbs }}</td>
-      <td class="food-log__data">{{ food.fats }}</td>
-      <td class="food-log__data">{{ food.calories }}</td>
-    </tr>
-    <tr class="food-log__row">
-      <button mat-button color="primary" (click)="openDialog('Breakfast', 'Product')">Add Product</button>
-      <button mat-button color="primary" (click)="openDialog('Breakfast', 'Meal')">Add Meal</button>
-    </tr>
-    <tr class="food-log__row" *ngIf="total.lunch">
-      <th class="food-log__heading">Lunch</th>
-      <th class="food-log__heading">{{ total.lunch.protein }}</th>
-      <th class="food-log__heading">{{ total.lunch.carbs }}</th>
-      <th class="food-log__heading">{{ total.lunch.fats }}</th>
-      <th class="food-log__heading">{{ total.lunch.calories }}</th>
-    </tr>
-    <tr class="food-log__row" *ngFor="let food of foodLog.lunch">
-      <td class="food-log__data">{{ food.name }}</td>
-      <td class="food-log__data">{{ food.protein }}</td>
-      <td class="food-log__data">{{ food.carbs }}</td>
-      <td class="food-log__data">{{ food.fats }}</td>
-      <td class="food-log__data">{{ food.calories }}</td>
-    </tr>
-    <tr class="food-log__row">
-      <button mat-button color="primary" (click)="openDialog('Lunch', 'Product')">Add Product</button>
-      <button mat-button color="primary" (click)="openDialog('Lunch', 'Meal')">Add Meal</button>
-    </tr>
-    <tr class="food-log__row" *ngIf="total.dinner">
-      <th class="food-log__heading">Dinner</th>
-      <th class="food-log__heading">{{ total.dinner.protein }}</th>
-      <th class="food-log__heading">{{ total.dinner.carbs }}</th>
-      <th class="food-log__heading">{{ total.dinner.fats }}</th>
-      <th class="food-log__heading">{{ total.dinner.calories }}</th>
-    </tr>
-    <tr class="food-log__row" *ngFor="let food of foodLog.dinner">
-      <td class="food-log__data">{{ food.name }}</td>
-      <td class="food-log__data">{{ food.protein }}</td>
-      <td class="food-log__data">{{ food.carbs }}</td>
-      <td class="food-log__data">{{ food.fats }}</td>
-      <td class="food-log__data">{{ food.calories }}</td>
-    </tr>
-    <tr class="food-log__row">
-      <button mat-button color="primary" (click)="openDialog('Dinner', 'Product')">Add Product</button>
-      <button mat-button color="primary" (click)="openDialog('Dinner', 'Meal')">Add Meal</button>
-    </tr>
-    <tr class="food-log__row" *ngIf="total.snacks">
-      <th class="food-log__heading">Snacks</th>
-      <th class="food-log__heading">{{ total.snacks.protein }}</th>
-      <th class="food-log__heading">{{ total.snacks.carbs }}</th>
-      <th class="food-log__heading">{{ total.snacks.fats }}</th>
-      <th class="food-log__heading">{{ total.snacks.calories }}</th>
-    </tr>
-    <tr class="food-log__row" *ngFor="let food of foodLog.snacks">
-      <td class="food-log__data">{{ food.name }}</td>
-      <td class="food-log__data">{{ food.protein }}</td>
-      <td class="food-log__data">{{ food.carbs }}</td>
-      <td class="food-log__data">{{ food.fats }}</td>
-      <td class="food-log__data">{{ food.calories }}</td>
-    </tr>
-    <tr class="food-log__row">
-      <button mat-button color="primary" (click)="openDialog('Snacks', 'Product')">Add Product</button>
-      <button mat-button color="primary" (click)="openDialog('Snacks', 'Meal')">Add Meal</button>
-    </tr>
-    <tr class="food-log__row" *ngIf="total.sum">
-      <th class="food-log__heading">Total</th>
-      <th class="food-log__heading">{{ total.sum.protein }}</th>
-      <th class="food-log__heading">{{ total.sum.carbs }}</th>
-      <th class="food-log__heading">{{ total.sum.fats }}</th>
-      <th class="food-log__heading">{{ total.sum.calories }}</th>
-    </tr>
-  </tbody>
-</table>
+<!-- <div class="food-log">
+  <table class="food-log__table" *ngIf="foodLog">
+    <thead class="food-log__header">
+      <tr class="food-log__row">
+        <th class="food-log__heading-primary">Name</th>
+        <th class="food-log__heading-primary">Protein</th>
+        <th class="food-log__heading-primary">Carbs</th>
+        <th class="food-log__heading-primary">Fats</th>
+        <th class="food-log__heading-primary">Calories</th>
+      </tr>
+    </thead>
+    <tbody class="food-log__body">
+      <tr #breakfast class="food-log__row" *ngIf="total.breakfast">
+        <th class="food-log__heading">Breakfast</th>
+        <th class="food-log__heading">{{ total.breakfast.protein }}</th>
+        <th class="food-log__heading">{{ total.breakfast.carbs }}</th>
+        <th class="food-log__heading">{{ total.breakfast.fats }}</th>
+        <th class="food-log__heading">{{ total.breakfast.calories }}</th>
+      </tr>
+      <tr class="food-log__row" *ngFor="let food of foodLog.breakfast">
+        <td class="food-log__data">{{ food.name }}</td>
+        <td class="food-log__data">{{ food.protein }}</td>
+        <td class="food-log__data">{{ food.carbs }}</td>
+        <td class="food-log__data">{{ food.fats }}</td>
+        <td class="food-log__data">{{ food.calories }}</td>
+      </tr>
+      <tr class="food-log__row">
+        <button mat-button color="primary" (click)="openDialog('Breakfast', 'Product')">Add Product</button>
+        <button mat-button color="primary" (click)="openDialog('Breakfast', 'Meal')">Add Meal</button>
+      </tr>
+      <tr class="food-log__row" *ngIf="total.lunch">
+        <th class="food-log__heading">Lunch</th>
+        <th class="food-log__heading">{{ total.lunch.protein }}</th>
+        <th class="food-log__heading">{{ total.lunch.carbs }}</th>
+        <th class="food-log__heading">{{ total.lunch.fats }}</th>
+        <th class="food-log__heading">{{ total.lunch.calories }}</th>
+      </tr>
+      <tr class="food-log__row" *ngFor="let food of foodLog.lunch">
+        <td class="food-log__data">{{ food.name }}</td>
+        <td class="food-log__data">{{ food.protein }}</td>
+        <td class="food-log__data">{{ food.carbs }}</td>
+        <td class="food-log__data">{{ food.fats }}</td>
+        <td class="food-log__data">{{ food.calories }}</td>
+      </tr>
+      <tr class="food-log__row">
+        <button mat-button color="primary" (click)="openDialog('Lunch', 'Product')">Add Product</button>
+        <button mat-button color="primary" (click)="openDialog('Lunch', 'Meal')">Add Meal</button>
+      </tr>
+      <tr class="food-log__row" *ngIf="total.dinner">
+        <th class="food-log__heading">Dinner</th>
+        <th class="food-log__heading">{{ total.dinner.protein }}</th>
+        <th class="food-log__heading">{{ total.dinner.carbs }}</th>
+        <th class="food-log__heading">{{ total.dinner.fats }}</th>
+        <th class="food-log__heading">{{ total.dinner.calories }}</th>
+      </tr>
+      <tr class="food-log__row" *ngFor="let food of foodLog.dinner">
+        <td class="food-log__data">{{ food.name }}</td>
+        <td class="food-log__data">{{ food.protein }}</td>
+        <td class="food-log__data">{{ food.carbs }}</td>
+        <td class="food-log__data">{{ food.fats }}</td>
+        <td class="food-log__data">{{ food.calories }}</td>
+      </tr>
+      <tr class="food-log__row">
+        <button mat-button color="primary" (click)="openDialog('Dinner', 'Product')">Add Product</button>
+        <button mat-button color="primary" (click)="openDialog('Dinner', 'Meal')">Add Meal</button>
+      </tr>
+      <tr class="food-log__row" *ngIf="total.snacks">
+        <th class="food-log__heading">Snacks</th>
+        <th class="food-log__heading">{{ total.snacks.protein }}</th>
+        <th class="food-log__heading">{{ total.snacks.carbs }}</th>
+        <th class="food-log__heading">{{ total.snacks.fats }}</th>
+        <th class="food-log__heading">{{ total.snacks.calories }}</th>
+      </tr>
+      <tr class="food-log__row" *ngFor="let food of foodLog.snacks">
+        <td class="food-log__data">{{ food.name }}</td>
+        <td class="food-log__data">{{ food.protein }}</td>
+        <td class="food-log__data">{{ food.carbs }}</td>
+        <td class="food-log__data">{{ food.fats }}</td>
+        <td class="food-log__data">{{ food.calories }}</td>
+      </tr>
+      <tr class="food-log__row">
+        <button mat-button color="primary" (click)="openDialog('Snacks', 'Product')">Add Product</button>
+        <button mat-button color="primary" (click)="openDialog('Snacks', 'Meal')">Add Meal</button>
+      </tr>
+      <tr class="food-log__row" *ngIf="total.sum">
+        <th class="food-log__heading">Total</th>
+        <th class="food-log__heading">{{ total.sum.protein }}</th>
+        <th class="food-log__heading">{{ total.sum.carbs }}</th>
+        <th class="food-log__heading">{{ total.sum.fats }}</th>
+        <th class="food-log__heading">{{ total.sum.calories }}</th>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+<div class="table-container">
+  <table class="table">
+    <thead class="table__head">
+      <tr class="table__row">
+        <th class="table__cell table__cell--head">Name</th>
+        <th class="table__cell table__cell--head">Protein</th>
+        <th class="table__cell table__cell--head">Carbs</th>
+        <th class="table__cell table__cell--head">Fats</th>
+        <th class="table__cell table__cell--head">Calories</th>
+        <th class="table__cell table__cell--head">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="table__body">
+      <tr class="table__row table__row--category" *ngIf="total.breakfast">
+        <th class="table__cell table__cell--category-head" colspan="6">
+          <div class="table__category-content">
+            <span class="table__category-name">Breakfast</span>
+            <div class="table__category-buttons">
+              <button mat-button color="primary" (click)="openDialog('Breakfast', 'Product')">Add Product</button>
+              <button mat-button color="primary" (click)="openDialog('Breakfast', 'Meal')">Add Meal</button>
+            </div>
+          </div>
+        </th>
+      </tr>
+      <tr class="table__row" *ngFor="let food of foodLog.breakfast">
+        <td class="table__cell" data-title="Name">{{ food.name }}</td>
+        <td class="table__cell" data-title="Protein">{{ food.protein }}</td>
+        <td class="table__cell" data-title="Carbs">{{ food.carbs }}</td>
+        <td class="table__cell" data-title="Fats">{{ food.fats }}</td>
+        <td class="table__cell" data-title="Calories">{{ food.calories }}</td>
+      </tr>
+      <tr #breakfast class="table__row" *ngIf="total.breakfast">
+        <td class="table__cell table__cell--total" data-title="Name">Breakfast total</td>
+        <td class="table__cell table__cell--total" data-title="Protein">{{ total.breakfast.protein }}</td>
+        <td class="table__cell table__cell--total" data-title="Carbs">{{ total.breakfast.carbs }}</td>
+        <td class="table__cell table__cell--total" data-title="Fats">{{ total.breakfast.fats }}</td>
+        <td class="table__cell table__cell--total" data-title="Calories">{{ total.breakfast.calories }}</td>
+      </tr>
+
+      <tr class="table__row table__row--category" *ngIf="total.lunch">
+        <th class="table__cell table__cell--category-head" colspan="6">
+          <div class="table__category-content">
+            <span class="table__category-name">Lunch</span>
+            <div class="table__category-buttons">
+              <button mat-button color="primary" (click)="openDialog('Lunch', 'Product')">Add Product</button>
+              <button mat-button color="primary" (click)="openDialog('Lunch', 'Meal')">Add Meal</button>
+            </div>
+          </div>
+        </th>
+      </tr>
+      <tr class="table__row" *ngFor="let food of foodLog.lunch">
+        <td class="table__cell" data-title="Name">{{ food.name }}</td>
+        <td class="table__cell" data-title="Protein">{{ food.protein }}</td>
+        <td class="table__cell" data-title="Carbs">{{ food.carbs }}</td>
+        <td class="table__cell" data-title="Fats">{{ food.fats }}</td>
+        <td class="table__cell" data-title="Calories">{{ food.calories }}</td>
+      </tr>
+      <tr #lunch class="table__row" *ngIf="total.lunch">
+        <td class="table__cell table__cell--total" data-title="Name">Lunch total</td>
+        <td class="table__cell table__cell--total" data-title="Protein">{{ total.lunch.protein }}</td>
+        <td class="table__cell table__cell--total" data-title="Carbs">{{ total.lunch.carbs }}</td>
+        <td class="table__cell table__cell--total" data-title="Fats">{{ total.lunch.fats }}</td>
+        <td class="table__cell table__cell--total" data-title="Calories">{{ total.lunch.calories }}</td>
+      </tr>
+
+      <tr class="table__row table__row--category" *ngIf="total.dinner">
+        <th class="table__cell table__cell--category-head" colspan="6">
+          <div class="table__category-content">
+            <span class="table__category-name">Dinner</span>
+            <div class="table__category-buttons">
+              <button mat-button color="primary" (click)="openDialog('Dinner', 'Product')">Add Product</button>
+              <button mat-button color="primary" (click)="openDialog('Dinner', 'Meal')">Add Meal</button>
+            </div>
+          </div>
+        </th>
+      </tr>
+      <tr class="table__row" *ngFor="let food of foodLog.dinner">
+        <td class="table__cell" data-title="Name">{{ food.name }}</td>
+        <td class="table__cell" data-title="Protein">{{ food.protein }}</td>
+        <td class="table__cell" data-title="Carbs">{{ food.carbs }}</td>
+        <td class="table__cell" data-title="Fats">{{ food.fats }}</td>
+        <td class="table__cell" data-title="Calories">{{ food.calories }}</td>
+      </tr>
+      <tr #lunch class="table__row" *ngIf="total.dinner">
+        <td class="table__cell table__cell--total" data-title="Name">Dinner total</td>
+        <td class="table__cell table__cell--total" data-title="Protein">{{ total.dinner.protein }}</td>
+        <td class="table__cell table__cell--total" data-title="Carbs">{{ total.dinner.carbs }}</td>
+        <td class="table__cell table__cell--total" data-title="Fats">{{ total.dinner.fats }}</td>
+        <td class="table__cell table__cell--total" data-title="Calories">{{ total.dinner.calories }}</td>
+      </tr>
+
+      <tr class="table__row table__row--category" *ngIf="total.snacks">
+        <th class="table__cell table__cell--category-head" colspan="6">
+          <div class="table__category-content">
+            <span class="table__category-name">Snacks</span>
+            <div class="table__category-buttons">
+              <button mat-button color="primary" (click)="openDialog('Snacks', 'Product')">Add Product</button>
+              <button mat-button color="primary" (click)="openDialog('Snacks', 'Meal')">Add Meal</button>
+            </div>
+          </div>
+        </th>
+      </tr>
+      <tr class="table__row" *ngFor="let food of foodLog.snacks">
+        <td class="table__cell table__cell--total" data-title="Name">{{ food.name }}</td>
+        <td class="table__cell table__cell--total" data-title="Protein">{{ food.protein }}</td>
+        <td class="table__cell table__cell--total" data-title="Carbs">{{ food.carbs }}</td>
+        <td class="table__cell table__cell--total" data-title="Fats">{{ food.fats }}</td>
+        <td class="table__cell table__cell--total" data-title="Calories">{{ food.calories }}</td>
+      </tr>
+      <tr #lunch class="table__row" *ngIf="total.lunch">
+        <td class="table__cell table__cell--total" data-title="Name">Snacks total</td>
+        <td class="table__cell table__cell--total" data-title="Protein">{{ total.snacks.protein }}</td>
+        <td class="table__cell table__cell--total" data-title="Carbs">{{ total.snacks.carbs }}</td>
+        <td class="table__cell table__cell--total" data-title="Fats">{{ total.snacks.fats }}</td>
+        <td class="table__cell table__cell--total" data-title="Calories">{{ total.snacks.calories }}</td>
+      </tr>
+
+      <tr class="table__row table__row--category" *ngIf="total.sum">
+        <td class="table__cell table__cell--total-sum" data-title="Name">Total</td>
+        <td class="table__cell table__cell--total-sum" data-title="Protein">{{ total.sum.protein }}</td>
+        <td class="table__cell table__cell--total-sum" data-title="Carbs">{{ total.sum.carbs }}</td>
+        <td class="table__cell table__cell--total-sum" data-title="Fats">{{ total.sum.fats }}</td>
+        <td class="table__cell table__cell--total-sum" data-title="Calories">{{ total.sum.calories }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<!-- <div class="food-wrapper">
+  <div class="food-table">
+    <div class="food-table__row food-table__row--head">
+      <div class="food-table__heading">Name</div>
+      <div class="food-table__heading">Protein</div>
+      <div class="food-table__heading">Carbs</div>
+      <div class="food-table__heading">Fats</div>
+      <div class="food-table__heading">Calories</div>
+    </div>
+    <div class="food-table__row food-table__row--category-head" *ngIf="total.breakfast">
+      <div class="food-table__category-heading">Breakfast</div>
+      <div class="food-table__category-heading">{{ total.breakfast.protein }}</div>
+      <div class="food-table__category-heading">{{ total.breakfast.carbs }}</div>
+      <div class="food-table__category-heading">{{ total.breakfast.fats }}</div>
+      <div class="food-table__category-heading">{{ total.breakfast.calories }}</div>
+    </div>
+  </div>
+</div> -->

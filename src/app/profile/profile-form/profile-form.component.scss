@@ -29,6 +29,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
+
+    @include breakpoint(tablet) {
+      justify-content: flex-start;
+      width: 80%;
+    }
   }
 
   &__macronutrients-values {
@@ -37,16 +43,20 @@
     height: 200px;
     width: 50%;
     justify-content: space-around;
-  }
 
-  &__macronutrient-value {
-    
+    /* @include breakpoint(tablet) {
+      width: 25%;
+    } */
   }
 
   &__macronutrient-percentage {
     display: flex;
     align-items: baseline;
     justify-content: center;
+
+    @include breakpoint(tablet) {
+      justify-content: flex-start;
+    }
   }
 
   &__macronutrient-total {
@@ -64,8 +74,12 @@
   }
 
   &__input-field {
-    width: 30%;
-    margin-right: 4rem;
+    width: 35%;
+    margin-right: 3rem;
+
+    @include breakpoint(tablet) {
+      width: 25%;
+    }
 
     &--short {
       min-width: 50px;
@@ -73,6 +87,18 @@
       margin-right: .5rem;
       margin-top: 0;
       margin-bottom: 0;
+    }
+
+    &--long {
+      width: 85%;
+
+      @include breakpoint(tablet) {
+        width: 55%;
+      }
+
+      @include breakpoint(desktop) {
+        width: 30%;
+      }
     }
   }
 

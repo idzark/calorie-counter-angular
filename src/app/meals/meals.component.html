@@ -8,7 +8,7 @@
   </mat-form-field>
 </div>
 
-<ul class="meals">
+<ul class="meals" *ngIf="meals">
   <li *ngFor="let meal of meals | filter : searchText" class="meals__item">
     <app-meal [meal]="meal"></app-meal>
   </li>

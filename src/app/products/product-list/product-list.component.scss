@@ -1,7 +1,10 @@
+@import "~sass/mixins";
+
 .table-container {
   display: flex;
   flex-direction: column;
-  min-width: 200px;
+  max-height: 500px;
+  min-width: 300px;
 }
 
 .table-header {
@@ -17,4 +20,53 @@
 .mat-table {
   overflow: auto;
   max-height: 500px;
+}
+
+.mat-header-row {
+  display: none;
+
+  @include breakpoint(tablet) {
+    display: flex;
+  }
+}
+
+.mat-row {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  min-height: 0;
+  padding: 12px 24px;
+  
+
+  @include breakpoint(tablet) {
+    flex-direction: row;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 24px; 
+  }
+}
+
+.mat-cell {
+  font-size: 1.8rem;
+  padding-bottom: 6px;
+
+  @include breakpoint(tablet) {
+    font-size: 1.4rem;
+    padding-bottom: 0;
+  }
+}
+
+.mat-cell:last-child {
+  padding-bottom: 0;
+}
+
+.mobile-label {
+  font-size: 1.8rem;
+  width: 80px;
+  display: inline-block;
+  font-weight: 600;
+
+  @include breakpoint(tablet) {
+    display: none;
+  }
 }

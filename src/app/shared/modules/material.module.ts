@@ -36,7 +36,8 @@ import {
     MatDialogModule,
     MatExpansionModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule
   ],
   exports: [
     MatInputModule,
@@ -53,7 +54,8 @@ import {
     MatDialogModule,
     MatExpansionModule,
     MatTabsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule
   ],
   declarations: []
 })
