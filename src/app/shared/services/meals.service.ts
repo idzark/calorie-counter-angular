@@ -10,8 +10,8 @@ export class MealsService {
 
   constructor(private http: HttpClient) { }
 
-  addMeal(mealData: Meal) {
-    return this.http.post(this.path + '/meal', mealData, { headers: this.headers });
+  addMeal(mealData: Meal): Observable<Meal> {
+    return this.http.post<Meal>(this.path + '/meal', mealData, { headers: this.headers });
   }
 
   getMeals(): Observable<Meal[]> {

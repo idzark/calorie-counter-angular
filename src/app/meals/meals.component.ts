@@ -17,6 +17,9 @@ export class MealsComponent implements OnInit {
   products: Product[];
   meals: Meal[];
   newMeal: Meal;
+  categories = ['Breakfast', 'Lunch', 'Dinner', 'Snacks'];
+  errorsList = [];
+  validationErrors: boolean;
 
   constructor(
     private productsService: ProductsService,
@@ -25,8 +28,15 @@ export class MealsComponent implements OnInit {
     public dialog: MatDialog) { }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(MealAddComponent);
+    const dialogRef = this.dialog.open(MealAddComponent, {
+      data: {
+        errorsList: this.errorsList,
+        validationErrors: this.validationErrors
+      }
+    });
     dialogRef.componentInstance.products = this.products;
+    dialogRef.componentInstance.meals = this.meals;
+    dialogRef.componentInstance.categories = this.categories;
     dialogRef.componentInstance.addMeal.subscribe( event => {
       this.addNewMeal(event);
     });
@@ -40,8 +50,13 @@ export class MealsComponent implements OnInit {
           this.snackBar.open('New meal added', 'Close', {
             duration: 3000,
           });
-          this.meals = [...this.meals, this.newMeal];
+          this.meals = [...this.meals, res];
+          this.validationErrors = false;
         },
+        (error) => {
+          this.errorsList = error.error;
+          this.validationErrors = true;
+        }
       );
   }
 

@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Inject, ViewChild } from '@angular/core';
 import { Product } from '../../shared/models/product.model';
 import { Meal } from '../../shared/models/meal.model';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ValidateName } from '../../shared/validators/name.validator';
 
 
 @Component({
@@ -11,6 +13,7 @@ import { MatDialogRef } from '@angular/material';
 })
 export class MealAddComponent implements OnInit {
   @Input() products: Product[];
+  @Input() meals: Meal[];
   @Input() categories: string[];
   @Output() addMeal = new EventEmitter<Meal>();
   meal: Meal = <Meal>{};
@@ -24,9 +27,17 @@ export class MealAddComponent implements OnInit {
   caloriesTotal: number;
   imageUrl: string;
   selectedCategory: string;
+  addMealForm: FormGroup;
+
+  errorMessages = {
+    name: 'Name must be between 3 and 20 characters',
+    nameTaken: 'Meal with that name already exists',
+    category: 'Please choose category'
+  };
 
   constructor(
-    private dialogRef: MatDialogRef<MealAddComponent>
+    private dialogRef: MatDialogRef<MealAddComponent>,
+    private formBuilder: FormBuilder
   ) { }
 
   getTotal(value) {
@@ -46,7 +57,8 @@ export class MealAddComponent implements OnInit {
   }
 
   onAddIngredient() {
-    this.selectedIngredient.weight = this.ingredientAmount;
+    this.selectedIngredient = this.addMealForm.value.ingredient;
+    this.selectedIngredient.weight = this.addMealForm.value.ingredientAmount;
     /* this.selectedIngredient.protein = Math.round(this.selectedIngredient.protein * this.selectedIngredient.weight / 100);
     this.selectedIngredient.carbs = Math.round(this.selectedIngredient.carbs * this.selectedIngredient.weight / 100);
     this.selectedIngredient.fats = Math.round(this.selectedIngredient.fats * this.selectedIngredient.weight / 100);
@@ -60,18 +72,48 @@ export class MealAddComponent implements OnInit {
     this.calculateTotalValues();
   }
 
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
+  }
+
   onAddMeal() {
+    this.meal.name = this.addMealForm.value.name;
+    this.meal.category = this.addMealForm.value.category;
     this.meal.ingredients = this.ingredients;
     this.meal.weight = this.weightTotal;
     this.meal.protein = this.proteinTotal;
     this.meal.carbs = this.carbsTotal;
     this.meal.fats = this.fatsTotal;
     this.meal.calories = this.caloriesTotal;
-    this.addMeal.emit(this.meal);
-    this.dialogRef.close();
+
+    if (this.addMealForm.valid) {
+      this.addMeal.emit(this.meal);
+      this.dialogRef.close();
+    } else {
+      this.validateAllFormFields(this.addMealForm);
+    }
+
+  }
+
+  get name() {
+    return this.addMealForm.controls.name;
   }
 
   ngOnInit() {
+    this.addMealForm = new FormGroup({
+      name: new FormControl('', [Validators.required, ValidateName(this.meals)]),
+      imageUrl: new FormControl(''),
+      category: new FormControl('', Validators.required),
+      ingredient: new FormControl(''),
+      ingredientAmount: new FormControl('')
+    });
   }
 
 }

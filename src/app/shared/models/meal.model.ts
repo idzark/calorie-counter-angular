@@ -9,4 +9,5 @@ export class Meal {
   fats: number;
   calories: number;
   imageUrl: string;
+  category: string;
 }

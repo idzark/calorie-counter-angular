@@ -1,19 +1,22 @@
 <h2 mat-dialog-title>Add meal</h2>
 <mat-dialog-content>
-  <form>
+  <form [formGroup]="addMealForm">
     <h3 class="meal-add__field-title">Name</h3>
     <mat-form-field class="meal-add__field">
-      <input matInput name="name" placeholder="Name" type="text" [(ngModel)]="meal.name">
-    </mat-form-field>
-    <h3 class="meal-add__field-title">Meal image</h3>
-    <mat-form-field class="meal-add__field">
-      <input matInput name="imageUrl" placeholder="Image URL" type="text" [(ngModel)]="meal.imageUrl">
+      <input matInput formControlName="name" name="name" placeholder="Name*" type="text">
+      <mat-error *ngIf="name.hasError('required')">{{ errorMessages.name }}</mat-error>
+      <mat-error *ngIf="name.hasError('nameTaken')">{{ errorMessages.nameTaken }}</mat-error>
     </mat-form-field>
     <h3>Category</h3>
     <mat-form-field class="meal-add__field">
-      <mat-select [(value)]="selectedCategory" placeholder="Category">
-        <mat-option [value]="category" *ngFor="let category of categories">{{ category }}</mat-option>
+      <mat-select formControlName="category" placeholder="Category*">
+        <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
       </mat-select>
+      <mat-error>{{ errorMessages.category }}</mat-error>
+    </mat-form-field>
+    <h3 class="meal-add__field-title">Meal image</h3>
+    <mat-form-field class="meal-add__field">
+      <input matInput name="imageUrl" formControlName="imageUrl" placeholder="Image URL" type="text">
     </mat-form-field>
     <h3 class="meal-add__field-title meal-add__field-title--ingredients">Ingredients</h3>
     <mat-list>
@@ -37,14 +40,21 @@
     </table> -->
     <div class="ingredients__add-fields">
       <mat-form-field class="meal-add__field meal-add__field--medium">
-        <mat-select [(value)]="selectedIngredient" placeholder="Ingredient">
+        <mat-select formControlName="ingredient" placeholder="Ingredient" #ingredient>
           <mat-option [value]="product" *ngFor="let product of products">{{ product.name }}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="meal-add__field meal-add__field--medium">
-        <input matInput name="amount" placeholder="Amount" type="number" [(ngModel)]="ingredientAmount">
+        <input matInput name="amount" placeholder="Amount" type="number" formControlName="ingredientAmount" #ingredientAmount>
       </mat-form-field>
-      <button class="meal-add__ingredients-button" type="button" mat-button color="primary" (click)="onAddIngredient()" [disabled]="(ingredientAmount <= 0 || !ingredientAmount) || !selectedIngredient">Add ingredient</button>
+      <button 
+        class="meal-add__ingredients-button" 
+        type="button" 
+        mat-button color="primary" 
+        (click)="onAddIngredient()" 
+        [disabled]="(ingredientAmount.value <= 0 || !ingredientAmount.value) || !ingredient.value">
+        Add ingredient
+      </button>
     </div>
   </form>
 </mat-dialog-content>
