@@ -10,8 +10,16 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  addProduct(productData: Product) {
-    return this.http.post(this.path + '/product', productData, { headers: this.headers });
+  addProduct(productData: Product): Observable<Product> {
+    return this.http.post<Product>(this.path + '/product', productData, { headers: this.headers });
+  }
+
+  updateProduct(updateData: Product, productId: string): Observable<Product> {
+    return this.http.put<Product>(this.path + `/products/${productId}`, updateData, { headers: this.headers });
+  }
+
+  deleteProduct(productId: string): Observable<Product> {
+    return this.http.delete<Product>(this.path + `/products/${productId}`, { headers: this.headers });
   }
 
   getProducts(): Observable<Product[]> {
