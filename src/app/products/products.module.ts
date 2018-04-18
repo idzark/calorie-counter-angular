@@ -4,14 +4,17 @@ import { ProductsComponent } from './products.component';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { SharedModule } from '../shared/modules/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule
   ],
-  declarations: [ProductsComponent, ProductAddComponent, ProductListComponent]
+  declarations: [ProductsComponent, ProductAddComponent, ProductListComponent],
+  exports: [ProductAddComponent],
+  entryComponents: [ProductAddComponent]
 })
 export class ProductsModule { }

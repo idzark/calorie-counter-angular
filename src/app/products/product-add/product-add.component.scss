@@ -1,15 +1,10 @@
 @import "~sass/mixins";
 
 .product-add {
-  min-width: 200px;
-  font-size: 1.6rem;
   
-  &__card {
-
-  }
-
   &__inputs {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
   }
 
@@ -19,18 +14,7 @@
 
   &__field {
     width: 100%;
-
-    @include breakpoint(tablet) {
-      width: 30%;
-    }
-
-    @include breakpoint(desktop) {
-      width: 18%;
-    }
-
-    &:not(:last-child) {
-      margin-right: 1.5rem;
-    }
+    margin-bottom: 1rem;
   }
 
 }
