@@ -13,7 +13,7 @@
           Ingredients
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <table class="ingredients">
+      <table class="ingredients" *ngIf="meal.ingredients.length > 0">
         <tr class="ingredients__row">
           <th>Name</th>
           <th>P / C / F / Cal</th>
