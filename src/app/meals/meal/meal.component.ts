@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Meal } from '../../shared/models/meal.model';
 
 @Component({
@@ -6,16 +6,26 @@ import { Meal } from '../../shared/models/meal.model';
   templateUrl: './meal.component.html',
   styleUrls: ['./meal.component.scss']
 })
-export class MealComponent implements OnInit, OnChanges {
-  @Input() meal: Meal;
+export class MealComponent implements OnInit {
+  @Input() meal;
+  @Output() edit = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit() {
+  onUpdate(meal: Meal, mealId: string) {
+    const updateData = {
+      meal: meal,
+      mealId: mealId
+    };
+    this.edit.emit(updateData);
   }
 
-  ngOnChanges() {
-    /* this.meal = this.mealData; */
+  onDelete(mealId: string) {
+    this.delete.emit(mealId);
+  }
+
+  ngOnInit() {
   }
 
 }

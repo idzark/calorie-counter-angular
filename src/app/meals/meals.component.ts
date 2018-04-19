@@ -3,7 +3,7 @@ import { ProductsService } from '../shared/services/products.service';
 import { Product } from '../shared/models/product.model';
 import { Meal } from '../shared/models/meal.model';
 import { MealsService } from '../shared/services/meals.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialogConfig } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { MealAddComponent } from './meal-add/meal-add.component';
 
@@ -30,6 +30,7 @@ export class MealsComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(MealAddComponent, {
       data: {
+        mode: 'add',
         errorsList: this.errorsList,
         validationErrors: this.validationErrors
       }
@@ -40,6 +41,65 @@ export class MealsComponent implements OnInit {
     dialogRef.componentInstance.addMeal.subscribe( event => {
       this.addNewMeal(event);
     });
+  }
+
+  openEditDialog(editData): void {
+    const editDialogConfig = new MatDialogConfig;
+
+    editDialogConfig.data = {
+      mode: 'edit',
+      editData: editData.meal,
+      mealId: editData.mealId
+    };
+
+    const dialogRef = this.dialog.open(MealAddComponent, editDialogConfig);
+    dialogRef.componentInstance.meals = this.meals;
+    dialogRef.componentInstance.products = this.products;
+    dialogRef.componentInstance.categories = this.categories;
+    dialogRef.componentInstance.editMeal.subscribe( updateData => {
+      this.updateMeal(updateData.meal, updateData.mealId);
+    });
+  }
+
+  updateMeal(updateData: Meal, mealId: string) {
+    this.mealsService.updateMeal(updateData, mealId)
+      .subscribe(
+        (res) => {
+          this.snackBar.open('Meal updated', 'Close', {
+            duration: 3000,
+          });
+          this.getMeals();
+        },
+        (err) => {
+          this.snackBar.open('Server error', 'Close', {
+            duration: 3000,
+          });
+        }
+      );
+  }
+
+  deleteMealFromList(meal: Meal) {
+    const mealIndex = this.meals.findIndex( item => {
+      return item.name === meal.name;
+    });
+    this.meals.splice(mealIndex, 1);
+  }
+
+  deleteMeal(mealId: string) {
+    this.mealsService.deleteMeal(mealId)
+      .subscribe(
+        (res) => {
+          this.snackBar.open('Meal deleted', 'Close', {
+            duration: 3000,
+          });
+          this.deleteMealFromList(res);
+        },
+        (err) => {
+          this.snackBar.open('Server error', 'Close', {
+            duration: 3000,
+          });
+        }
+      );
   }
 
   addNewMeal(event) {
@@ -60,20 +120,27 @@ export class MealsComponent implements OnInit {
       );
   }
 
-  ngOnInit() {
+  getMeals() {
+    this.mealsService.getMeals()
+      .subscribe(
+        (res) => {
+          this.meals = res;
+        }
+      );
+  }
+
+  getProducts() {
     this.productsService.getProducts()
       .subscribe(
         (res) => {
           this.products = res;
         }
       );
+  }
 
-      this.mealsService.getMeals()
-        .subscribe(
-          (res) => {
-            this.meals = res;
-          }
-        );
+  ngOnInit() {
+    this.getMeals();
+    this.getProducts();
   }
 
 }

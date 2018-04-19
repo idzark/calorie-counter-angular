@@ -4,6 +4,14 @@
       <img [src]="meal.imageUrl" class="meal__image">
     </div>
     <div class="meal__image-overlay"></div>
+    <div class="meal__actions">
+      <button mat-icon-button (click)="onUpdate(meal, meal._id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onDelete(meal._id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
     <h3 class="meal__name">{{ meal.name }}</h3>
   </div>
   <div class="meal__content">

@@ -14,6 +14,14 @@ export class MealsService {
     return this.http.post<Meal>(this.path + '/meal', mealData, { headers: this.headers });
   }
 
+  updateMeal(updateData: Meal, mealId: string) {
+    return this.http.put(`${this.path}/meals/${mealId}`, updateData, { headers: this.headers });
+  }
+
+  deleteMeal(mealId: string): Observable<Meal> {
+    return this.http.delete<Meal>(`${this.path}/meals/${mealId}`, { headers: this.headers });
+  }
+
   getMeals(): Observable<Meal[]> {
     return this.http.get<Meal[]>(this.path + '/meals', { headers: this.headers });
   }

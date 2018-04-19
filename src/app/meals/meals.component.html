@@ -10,6 +10,6 @@
 
 <ul class="meals" *ngIf="meals">
   <li *ngFor="let meal of meals | filter : searchText" class="meals__item">
-    <app-meal [meal]="meal"></app-meal>
+    <app-meal [meal]="meal" (edit)="openEditDialog($event)" (delete)="deleteMeal($event)"></app-meal>
   </li>
 </ul>

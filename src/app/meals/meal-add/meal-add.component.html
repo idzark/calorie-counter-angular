@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Add meal</h2>
+<h2 mat-dialog-title>{{ dialogTitle }}</h2>
 <mat-dialog-content>
   <form [formGroup]="addMealForm">
     <h3 class="meal-add__field-title">Name</h3>
@@ -20,8 +20,11 @@
     </mat-form-field>
     <h3 class="meal-add__field-title meal-add__field-title--ingredients">Ingredients</h3>
     <mat-list>
-      <mat-list-item *ngFor="let ingredient of ingredients">
+      <mat-list-item *ngFor="let ingredient of ingredients; let i = index">
         {{ ingredient.name }} ({{ ingredient.weight }}g)
+        <button mat-icon-button (click)="onDeleteIngredient(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-list-item>
     </mat-list>
     <!-- <table class="ingredients">
@@ -59,5 +62,16 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button class="meal-add__add-button" mat-raised-button type="submit" color="primary" (click)="onAddMeal()">Add new meal</button>
+  <button 
+  *ngIf="mode === 'add'"
+  class="meal-add__add-button" 
+  mat-raised-button 
+  color="primary" 
+  (click)="onAddMeal()">Add meal</button>
+  <button 
+  *ngIf="mode === 'edit'"
+  class="meal-add__add-button" 
+  mat-raised-button 
+  color="primary" 
+  (click)="onEditMeal()">Save meal</button>
 </mat-dialog-actions>

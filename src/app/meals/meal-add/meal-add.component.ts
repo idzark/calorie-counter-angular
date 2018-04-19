@@ -3,7 +3,7 @@ import { Product } from '../../shared/models/product.model';
 import { Meal } from '../../shared/models/meal.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ValidateName } from '../../shared/validators/name.validator';
+import { ValidateName, ValidateEditName } from '../../shared/validators/name.validator';
 
 
 @Component({
@@ -16,6 +16,7 @@ export class MealAddComponent implements OnInit {
   @Input() meals: Meal[];
   @Input() categories: string[];
   @Output() addMeal = new EventEmitter<Meal>();
+  @Output() editMeal = new EventEmitter<any>();
   meal: Meal = <Meal>{};
   selectedIngredient: Product;
   ingredientAmount: number;
@@ -29,6 +30,11 @@ export class MealAddComponent implements OnInit {
   selectedCategory: string;
   addMealForm: FormGroup;
 
+  mode: string;
+  editData: Meal;
+  mealId: string;
+  dialogTitle: string;
+
   errorMessages = {
     name: 'Name must be between 3 and 20 characters',
     nameTaken: 'Meal with that name already exists',
@@ -37,8 +43,12 @@ export class MealAddComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<MealAddComponent>,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) data) {
+    this.mode = data.mode;
+    this.editData = data.editData;
+    this.mealId = data.mealId;
+  }
 
   getTotal(value) {
     let total = 0;
@@ -72,6 +82,10 @@ export class MealAddComponent implements OnInit {
     this.calculateTotalValues();
   }
 
+  onDeleteIngredient(ingredientIndex: number) {
+    this.ingredients.splice(ingredientIndex, 1);
+  }
+
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
@@ -102,18 +116,65 @@ export class MealAddComponent implements OnInit {
 
   }
 
+  onEditMeal() {
+    this.meal.name = this.addMealForm.value.name;
+    this.meal.category = this.addMealForm.value.category;
+    this.meal.ingredients = this.ingredients;
+    this.meal.weight = this.weightTotal;
+    this.meal.protein = this.proteinTotal;
+    this.meal.carbs = this.carbsTotal;
+    this.meal.fats = this.fatsTotal;
+    this.meal.calories = this.caloriesTotal;
+
+    const updateData = {
+      meal: this.meal,
+      mealId: this.mealId
+    };
+
+    if (this.addMealForm.valid) {
+      this.editMeal.emit(updateData);
+      this.dialogRef.close();
+    } else {
+      this.validateAllFormFields(this.addMealForm);
+    }
+  }
+
+  initializeDialogTitle() {
+    if (this.mode === 'edit') {
+      this.dialogTitle = 'Edit meal';
+    } else {
+      this.dialogTitle = 'Add meal';
+    }
+  }
+
+  buildForm() {
+    if (this.editData) {
+      this.ingredients = this.editData.ingredients;
+      this.addMealForm = new FormGroup({
+        name: new FormControl(this.editData.name, [Validators.required, ValidateEditName(this.meals, this.editData.name)]),
+        imageUrl: new FormControl(this.editData.imageUrl),
+        category: new FormControl(this.editData.category, Validators.required),
+        ingredient: new FormControl(''),
+        ingredientAmount: new FormControl('')
+      });
+    } else {
+      this.addMealForm = new FormGroup({
+        name: new FormControl('', [Validators.required, ValidateName(this.meals)]),
+        imageUrl: new FormControl(''),
+        category: new FormControl('', Validators.required),
+        ingredient: new FormControl(''),
+        ingredientAmount: new FormControl('')
+      });
+    }
+  }
+
   get name() {
     return this.addMealForm.controls.name;
   }
 
   ngOnInit() {
-    this.addMealForm = new FormGroup({
-      name: new FormControl('', [Validators.required, ValidateName(this.meals)]),
-      imageUrl: new FormControl(''),
-      category: new FormControl('', Validators.required),
-      ingredient: new FormControl(''),
-      ingredientAmount: new FormControl('')
-    });
+    this.initializeDialogTitle();
+    this.buildForm();
   }
 
 }

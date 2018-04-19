@@ -1,9 +1,18 @@
+@import "~sass/mixins";
+
 .meal {
   width: 100%;
   padding: 0;
   
   &:hover &__image-overlay {
     opacity: 1;
+  }
+
+  &:hover &__actions {
+    @include breakpoint(desktop) {
+      display: block;
+      animation: fadeIn 1s;
+    }
   }
 
   &__name {
@@ -15,6 +24,18 @@
     padding: .5rem;
     background-color: #FFC107;
 
+  }
+
+  &__actions {
+    background-color: #FFC107;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: all .5s ease;
+
+    @include breakpoint(desktop) {
+      display: none;
+    }
   }
 
   &__header {
@@ -62,4 +83,14 @@
   }
   
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
