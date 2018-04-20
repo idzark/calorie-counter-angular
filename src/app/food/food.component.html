@@ -8,6 +8,7 @@
     [meals]="meals$ | async" 
     [foodLog]="foodLog"
     [total]="total"
-    (add)="updateFoodLog($event)"></app-food-log>
+    (add)="updateFoodLog($event)"
+    (delete)="deleteFood($event)"></app-food-log>
 </div>
 

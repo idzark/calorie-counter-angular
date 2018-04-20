@@ -152,6 +152,21 @@ export class FoodComponent implements OnInit, OnDestroy {
     }
   }
 
+  deleteFood(deleteData) {
+    const category = deleteData.category;
+    const foodIndex = deleteData.foodIndex;
+
+    this.foodLog[category].splice(foodIndex, 1);
+
+    this.foodLogService.updateFoodLog(this.foodLog)
+      .takeUntil(this.unsubscribe$)
+      .subscribe(
+        (res) => {
+          this.getFoodLogData(this.date);
+        }
+      );
+  }
+
   ngOnInit() {
     this.resetTotalValues();
     this.getFoodLogData(this.date);

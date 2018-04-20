@@ -152,6 +152,14 @@
     font-weight: 500;
   }
 
+  &__cell--actions {
+    text-align: center;
+
+    @include breakpoint(tablet) {
+      text-align: left;
+    }
+  }
+
   &__cell--total-sum {
     font-weight: 500;
 

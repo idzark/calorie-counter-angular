@@ -117,12 +117,17 @@
           </div>
         </th>
       </tr>
-      <tr class="table__row" *ngFor="let food of foodLog.breakfast">
+      <tr class="table__row" *ngFor="let food of foodLog.breakfast; let i = index">
         <td class="table__cell" data-title="Name">{{ food.name }}</td>
         <td class="table__cell" data-title="Protein">{{ food.protein }}</td>
         <td class="table__cell" data-title="Carbs">{{ food.carbs }}</td>
         <td class="table__cell" data-title="Fats">{{ food.fats }}</td>
         <td class="table__cell" data-title="Calories">{{ food.calories }}</td>
+        <td class="table__cell table__cell--actions">
+          <button mat-icon-button (click)="deleteFood('breakfast', i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
       </tr>
       <tr #breakfast class="table__row" *ngIf="total.breakfast">
         <td class="table__cell table__cell--total" data-title="Name">Breakfast total</td>
@@ -143,12 +148,17 @@
           </div>
         </th>
       </tr>
-      <tr class="table__row" *ngFor="let food of foodLog.lunch">
+      <tr class="table__row" *ngFor="let food of foodLog.lunch; let i = index">
         <td class="table__cell" data-title="Name">{{ food.name }}</td>
         <td class="table__cell" data-title="Protein">{{ food.protein }}</td>
         <td class="table__cell" data-title="Carbs">{{ food.carbs }}</td>
         <td class="table__cell" data-title="Fats">{{ food.fats }}</td>
         <td class="table__cell" data-title="Calories">{{ food.calories }}</td>
+        <td class="table__cell table__cell--actions">
+          <button mat-icon-button (click)="deleteFood('lunch', i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
       </tr>
       <tr #lunch class="table__row" *ngIf="total.lunch">
         <td class="table__cell table__cell--total" data-title="Name">Lunch total</td>
@@ -169,12 +179,17 @@
           </div>
         </th>
       </tr>
-      <tr class="table__row" *ngFor="let food of foodLog.dinner">
+      <tr class="table__row" *ngFor="let food of foodLog.dinner; let i = index">
         <td class="table__cell" data-title="Name">{{ food.name }}</td>
         <td class="table__cell" data-title="Protein">{{ food.protein }}</td>
         <td class="table__cell" data-title="Carbs">{{ food.carbs }}</td>
         <td class="table__cell" data-title="Fats">{{ food.fats }}</td>
         <td class="table__cell" data-title="Calories">{{ food.calories }}</td>
+        <td class="table__cell table__cell--actions">
+          <button mat-icon-button (click)="deleteFood('dinner', i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
       </tr>
       <tr #lunch class="table__row" *ngIf="total.dinner">
         <td class="table__cell table__cell--total" data-title="Name">Dinner total</td>
@@ -195,14 +210,19 @@
           </div>
         </th>
       </tr>
-      <tr class="table__row" *ngFor="let food of foodLog.snacks">
+      <tr class="table__row" *ngFor="let food of foodLog.snacks; let i = index">
         <td class="table__cell table__cell--total" data-title="Name">{{ food.name }}</td>
         <td class="table__cell table__cell--total" data-title="Protein">{{ food.protein }}</td>
         <td class="table__cell table__cell--total" data-title="Carbs">{{ food.carbs }}</td>
         <td class="table__cell table__cell--total" data-title="Fats">{{ food.fats }}</td>
         <td class="table__cell table__cell--total" data-title="Calories">{{ food.calories }}</td>
+        <td class="table__cell table__cell--actions">
+          <button mat-icon-button (click)="deleteFood('snacks', i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
       </tr>
-      <tr #lunch class="table__row" *ngIf="total.lunch">
+      <tr #lunch class="table__row" *ngIf="total.snacks">
         <td class="table__cell table__cell--total" data-title="Name">Snacks total</td>
         <td class="table__cell table__cell--total" data-title="Protein">{{ total.snacks.protein }}</td>
         <td class="table__cell table__cell--total" data-title="Carbs">{{ total.snacks.carbs }}</td>

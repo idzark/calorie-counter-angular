@@ -18,6 +18,7 @@ export class FoodLogComponent implements OnInit {
   @Input() meals: Meal[];
   @Input() total: Total;
   @Output() add = new EventEmitter<Food>();
+  @Output() delete = new EventEmitter<{ category: string, foodIndex: number }>();
 
   constructor(
     public dialog: MatDialog) { }
@@ -36,6 +37,15 @@ export class FoodLogComponent implements OnInit {
     dialogRef.componentInstance.add.subscribe(food => {
       this.addFood(food);
     });
+  }
+
+  deleteFood(category: string, foodIndex: number) {
+    const deleteData = {
+      category,
+      foodIndex
+    };
+
+    this.delete.emit(deleteData);
   }
 
   addFood(food: Food) {
