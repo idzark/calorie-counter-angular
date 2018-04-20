@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Meal } from '../models/meal.model';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class MealsService {
-  path = 'http://localhost:3000/api';
+  path = environment.path;
   headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
   constructor(private http: HttpClient) { }

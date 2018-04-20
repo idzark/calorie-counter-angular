@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { UserProfile } from '../models/user-profile.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class UserService {
-  path = 'http://localhost:3000/api';
+  path = environment.path;
   headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
   constructor(private  http: HttpClient) { }

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { tokenNotExpired } from 'angular2-jwt';
+import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/shareReplay';
 
@@ -10,7 +11,7 @@ import 'rxjs/add/operator/shareReplay';
 
 @Injectable()
 export class AuthService {
-  path = 'http://localhost:3000/api';
+  path = environment.path;
   TOKEN_KEY = 'id_token';
   headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
