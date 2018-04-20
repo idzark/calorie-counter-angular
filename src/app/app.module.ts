@@ -24,6 +24,7 @@ import { UserService } from './shared/services/user.service';
 import { ProfileModule } from './profile/profile.module';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileFormComponent } from './profile/profile-form/profile-form.component';
+import { AuthGuardService } from './auth/auth-guard.service';
 
 
 
@@ -56,6 +57,7 @@ import { ProfileFormComponent } from './profile/profile-form/profile-form.compon
     MealsService,
     FoodLogService,
     UserService,
+    AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

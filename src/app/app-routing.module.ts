@@ -7,16 +7,17 @@ import { ProductsComponent } from './products/products.component';
 import { MealsComponent } from './meals/meals.component';
 import { FoodComponent } from './food/food.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
-      { path: 'profile', component: ProfileComponent },
-      { path: 'products', component: ProductsComponent },
-      { path: 'meals', component: MealsComponent },
-      { path: 'food-log', component: FoodComponent }
+      { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+      { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
+      { path: 'meals', component: MealsComponent, canActivate: [AuthGuard] },
+      { path: 'food-log', component: FoodComponent, canActivate: [AuthGuard] }
     ]
   },
   { path: 'login', component: LoginComponent },

@@ -24,6 +24,10 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
+  tokenExpired() {
+    return !tokenNotExpired(this.TOKEN_KEY);
+  }
+
   get isLoggedIn() {
     if (tokenNotExpired(this.TOKEN_KEY)) {
       this.loggedIn.next(true);
