@@ -2,25 +2,25 @@
   <mat-sidenav #sidenav class="sidenav" opened="true" [mode]="sidenavMode">
     <ul class="sidenav__list">
       <li class="sidenav__item">
-        <a routerLink="/profile" class="sidenav__link" routerLink="/profile">
+        <a routerLink="/profile" class="sidenav__link" routerLink="/profile" (click)="closeMobileMenu()">
           <mat-icon class="sidenav__icon">face</mat-icon>
           <span class="sidenav__item-text">Profile</span>
         </a>
       </li>
       <li class="sidenav__item">
-        <a routerLink="/food-log" class="sidenav__link">
+        <a routerLink="/food-log" class="sidenav__link" (click)="closeMobileMenu()">
           <mat-icon class="sidenav__icon">today</mat-icon>
           <span class="sidenav__item-text">Food log</span>
         </a>
       </li>
       <li class="sidenav__item">
-        <a routerLink="/products" class="sidenav__link" routerLink="/products">
+        <a routerLink="/products" class="sidenav__link" routerLink="/products" (click)="closeMobileMenu()">
           <mat-icon class="sidenav__icon">free_breakfast</mat-icon>
           <span class="sidenav__item-text">Products</span>
         </a>
       </li>
       <li class="sidenav__item">
-        <a class="sidenav__link" routerLink="/meals">
+        <a class="sidenav__link" routerLink="/meals" (click)="closeMobileMenu()">
           <mat-icon class="sidenav__icon">room_service</mat-icon>
           <span class="sidenav__item-text">Meals</span>
         </a>
