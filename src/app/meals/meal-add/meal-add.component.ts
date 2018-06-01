@@ -29,6 +29,7 @@ export class MealAddComponent implements OnInit {
   imageUrl: string;
   selectedCategory: string;
   addMealForm: FormGroup;
+  defaultImage = 'https://images.pexels.com/photos/616404/pexels-photo-616404.jpeg?h=350&auto=compress&cs=tinysrgb';
 
   mode: string;
   editData: Meal;
@@ -100,7 +101,7 @@ export class MealAddComponent implements OnInit {
   onAddMeal() {
     this.meal.name = this.addMealForm.value.name;
     this.meal.category = this.addMealForm.value.category;
-    this.meal.imageUrl = this.addMealForm.value.imageUrl;
+    this.meal.imageUrl = this.addMealForm.value.imageUrl.trim() || this.defaultImage;
     this.meal.ingredients = this.ingredients;
     this.meal.weight = this.weightTotal;
     this.meal.protein = this.proteinTotal;
@@ -120,7 +121,7 @@ export class MealAddComponent implements OnInit {
   onEditMeal() {
     this.meal.name = this.addMealForm.value.name;
     this.meal.category = this.addMealForm.value.category;
-    this.meal.imageUrl = this.addMealForm.value.imageUrl;
+    this.meal.imageUrl = this.addMealForm.value.imageUrl.trim() || this.defaultImage;
     this.meal.ingredients = this.ingredients;
     this.meal.weight = this.weightTotal;
     this.meal.protein = this.proteinTotal;
